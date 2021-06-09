@@ -8,7 +8,8 @@ config = {
     theme: "ambiance",
     indentWithTabs: false,
     readOnly: false,
-    mode: "xml"
+    mode: "xml",
+    autoCloseBrackets: true
 };
 
 editor = CodeMirror.fromTextArea(document.getElementById("entrada"), config);
