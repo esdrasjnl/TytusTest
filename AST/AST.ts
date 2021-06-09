@@ -1,11 +1,16 @@
-import { Instruccion } from "../Interfaces/Instruccion";
+export abstract class Nodo{
+    fila:number;
+    columna:number;
+    nombre:string;
+    valor:any;
+    hijos:Array<Nodo>;
 
-export class AST{
-    
-    public instrucciones:Array<Instruccion>
-
-    constructor(instrucciones:Array<Instruccion>){
-        this.instrucciones = instrucciones;
+    constructor(fila:number, columna:number, nombre:string, valor:any){
+        this.fila = fila;
+        this.columna = columna;
+        this.nombre = nombre;
+        this.valor = valor;
+        this.hijos = [];
     }
 
 }
