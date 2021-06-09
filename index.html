@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <title>TytusX</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header>
+        <section>
+            <a href="/index.html" id="logo" target="_blank">TytusX</a>
+            <nav>
+                <ul>
+                    <li><a href="">Inicio</a></li>
+                    <li><a href="">Reportes</a></li>
+                    <li><a href="">Arbol</a></li>
+                </ul>
+            </nav>
+    </header>
+
+    </section>
+
+    <div class="box">
+        <div class="left">
+            <div class="content">
+                <h2>Entrada</h2>
+                <textarea id="entrada" name="code" class="CodeMirror"></textarea>
+                <a class="btnPrincipal" style="margin: 10px" onclick="analizaXML()">Guardar</a>
+                <a class="btnConsultar" style="margin: 10px" href="">Consultar</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="content">
+                <h2>Salida</h2>
+                <textarea class="form-control1" id="result" wrap='off' readonly></textarea>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="content">
+            <h2>Consola</h2>
+            <textarea class="console" id="console" readonly></textarea>
+        </div>
+    </section>
+
+    <link rel="stylesheet" type="text/css" href="./codemirror/lib/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./codemirror/theme//ambiance.css">
+    <link rel="stylesheet" type="text/css" href="./codemirror/theme/solarized.css">
+    <script type="text/javascript" src="./codemirror/lib/codemirror.js"></script>
+    <script type="text/javascript" src="./codemirror/mode/javascript/javascript.js"></script>
+    <script type="text/javascript" src="./codemirror/mode/xml/xml.js"></script>
+    <script src="./index.js"></script>
+    <script src="./analisis/gramatica.js"></script>
+</body>
+<footer>
+
+</footer>
+
+</html>
