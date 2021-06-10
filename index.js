@@ -16,8 +16,9 @@ editor = CodeMirror.fromTextArea(document.getElementById("entrada"), config);
 
 function analizaXML() {
     try {
-        console.log("Hola Mundo");   
-        result = gramatica.parse(editor.getValue());
+        document.getElementById("console").value = "";
+        result = XmlAsc.parse(editor.getValue());
+        console.log(result);
     } catch (error) {
         
     }

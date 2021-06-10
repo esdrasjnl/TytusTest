@@ -123,4 +123,6 @@ OBJETOS: OBJETOS OBJETO
 
 LISTA_ID_OBJETO: LISTA_ID_OBJETO identificador
     | identificador
+    | DECIMAL
+    | ENTERO
 ;
