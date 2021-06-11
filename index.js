@@ -1,4 +1,3 @@
-
 var config, editor;
 var result,
 
@@ -22,4 +21,22 @@ function analizaXML() {
     } catch (error) {
         
     }
+}
+
+function reporteAst(){
+    let arbol = new AST();
+    let graficar = arbol.generarDot(result);
+    var clickedTab = document.getElementById("clickedTab");
+    clickedTab.innerHTML = "";
+    clickedTab.innerHTML = "<h3>Reporte AST</h3>"
+
+    //console.log(graficar);
+    var viz = new Viz();
+    viz.renderSVGElement(graficar).then(function (element) {
+      clickedTab.appendChild(element);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
 }

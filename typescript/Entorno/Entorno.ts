@@ -1,7 +1,4 @@
-import { Simbolo } from "./Simbolo";
-
-
-export class Entorno{
+class Entorno{
     private anterior:Entorno;
     private tabla:{[id:string] : Simbolo};
 
