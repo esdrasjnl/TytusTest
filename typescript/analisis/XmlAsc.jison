@@ -10,7 +10,7 @@
 %lex
 
 %options case-insensitive
-%x STRING
+%s STRING
 
 escapechar                          [\'\"\\bfnrtv]
 escape                              \\{escapechar}
@@ -49,17 +49,16 @@ stringliteral                       \"{stringdouble}*\"
 
 {stringliteral}                     return 'StringLiteral';
 
-
-["]                           {    $cad = ""; this.begin("STRING"); }
-[']                           {    $cad = ""; this.begin("STRING"); }
-<STRING>\"                   %{    this.begin('INITIAL'); yytext=""; yytext=$cad;  return 'cadena'; %}      
-<STRING>[\']                 %{    this.begin('INITIAL'); yytext=""; yytext=$cad;  return 'cadena'; %}      
-<STRING>[^\n\r\"\\']+        %{    $cad+=yytext;  %}
-<STRING>'\t'                 %{    $cad+="\t";    %}
-<STRING>'\n'                 %{    $cad+="\n";    %}
-<STRING>'\r'                 %{    $cad+="\r";    %}
-<STRING>'\\"'                %{    $cad+='\"';    %}
-<STRING>'\\'                 %{    $cad+='\\';    %}
+["]                           {    string = ""; this.begin("STRING"); }
+[']                           {    string = ""; this.begin("STRING"); }
+<STRING>\"                   %{    this.begin('INITIAL'); yytext=""; yytext=string;  return 'cadena'; %}      
+<STRING>[\']                 %{    this.begin('INITIAL'); yytext=""; yytext=string;  return 'cadena'; %}      
+<STRING>[^\n\r\"\\']+        %{    string+=yytext;  %}
+<STRING>'\t'                 %{    string+="\t";    %}
+<STRING>'\n'                 %{    string+="\n";    %}
+<STRING>'\r'                 %{    string+="\r";    %}
+<STRING>'\\"'                %{    string+='\"';    %}
+<STRING>'\\'                 %{    string+='\\';    %}
 
 
 <<EOF>>                 return 'EOF';
@@ -67,6 +66,11 @@ stringliteral                       \"{stringdouble}*\"
 .                       { document.getElementById("console").value += 'Este es un error léxico: ' + yytext + ', en la linea: ' + yylloc.first_line + ', en la columna: ' + yylloc.first_column + '\n'; }
 
 /lex
+
+%{
+	let raiz;
+    let string = "";
+%}
 
 /* Asociación de operadores y precedencia */
 
@@ -81,11 +85,11 @@ stringliteral                       \"{stringdouble}*\"
 
 %% /* Definición de la gramática */
 
-START : L_OBJETO EOF
+START : L_OBJETO EOF { raiz = $$; return raiz; }
 ;
 
-L_OBJETO: L_OBJETO OBJETO
-    | OBJETO
+L_OBJETO: L_OBJETO OBJETO   { $$ = $1; $$.getHijos().push($2); }
+    | OBJETO                { $$ = new L_Objeto("LISTA_OBJETOS"); $$.getHijos().push($1); }
 ;
 //<?xml version="1.0" encoding="UTF-8"?>
 //TESTVERSION : menorq interc xmlR versionR igual cadena interc mayorq
@@ -95,7 +99,7 @@ L_OBJETO: L_OBJETO OBJETO
 //ATRIB_VERS: xmlR versionR igual cadena encodingR igual cadena
 //;
 
-OBJETO : menorq identificador LATRIBUTOS OBJ_ETQ
+OBJETO : menorq identificador LATRIBUTOS OBJ_ETQ    { $$ = new Objeto($2); $$.getHijos().push($3); }
     | error { document.getElementById("console").value += 'Este es un error sintáctico: ' + yytext + ', en la linea: ' + this._$.first_line + ', en la columna: ' + this._$.first_column + '\n'; }
 ;
 
@@ -106,19 +110,19 @@ OBJ_ETQ: div mayorq  //< identificador LATRIBUTOS / >
     | 
 ;
 
-LATRIBUTOS: ATRIBUTOS
-           |
+LATRIBUTOS: ATRIBUTOS   { $$ = $1; }
+           |            { $$ = new L_Atributo(); }
 ;
 
-ATRIBUTOS: ATRIBUTOS ATRIBUTO
-    | ATRIBUTO
+ATRIBUTOS: ATRIBUTOS ATRIBUTO   { $$ = $1; $$.getHijos().push($2); }
+    | ATRIBUTO  { $$ = new L_Atributo(); $$.getHijos().push($1); }
 ;
 
-ATRIBUTO: identificador igual StringLiteral //Identificador = "cadena"
-;
-
-OBJETOS: OBJETOS OBJETO
-	| OBJETO
+ATRIBUTO: identificador igual StringLiteral { 
+                                                $$ = new Atributo(); 
+                                                $$.getHijos().push(new Identificador(@1.first_line, @1.first_column, $1));
+                                                $$.getHijos().push(new Cadena(@3.first_line, @3.first_column, $3.substring(1,$3.length-1)));
+                                            } //Identificador = "cadena"
 ;
 
 LISTA_ID_OBJETO: LISTA_ID_OBJETO identificador

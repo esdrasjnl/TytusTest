@@ -1,6 +1,4 @@
-import { Entorno } from '../Entorno/Entorno';
-
-export abstract class Nodo{
+abstract class Nodo{
     
     private fila:number;
     private columna:number;

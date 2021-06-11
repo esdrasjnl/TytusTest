@@ -1,9 +1,5 @@
-import { Expresion } from "../Interfaces/Expresion";
-import { AST } from "./AST";
-import { Entorno } from "./Entorno";
-import { Tipo } from "./Tipo";
 
-export class Simbolo implements Expresion {
+class Simbolo {
     public indentificador: string;
     private valor: any;
     private tipo: Tipo;
@@ -17,10 +13,10 @@ export class Simbolo implements Expresion {
         this.tipo = tipo;
     }
 
-    getTipo(ent: Entorno, arbol: AST): Tipo {
+    getTipo(): Tipo {
         return this.tipo;
     }
-    getValorImplicito(ent: Entorno, arbol: AST) {
+    getValorImplicito() {
         return this.valor;
     }
     
