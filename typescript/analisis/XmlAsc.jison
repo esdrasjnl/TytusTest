@@ -104,9 +104,9 @@ OBJETO : menorq identificador LATRIBUTOS OBJ_ETQ    { $$ = new Objeto($2); $$.ge
 ;
 
 OBJ_ETQ: div mayorq  //< identificador LATRIBUTOS / >
-    | mayorq  menorq div identificador LATRIBUTOS mayorq //< identificador LATRIBUTOS >  < / identificador >
-    | mayorq LISTA_ID_OBJETO menorq div identificador LATRIBUTOS mayorq //< identificador LATRIBUTOS > LISTA_ID_OBJETO < / identificador >
-    | mayorq OBJETOS menorq div identificador LATRIBUTOS mayorq //< identificador LATRIBUTOS > OBJETOS < / identificador >
+    | mayorq  menorq div identificador mayorq //< identificador LATRIBUTOS >  < / identificador >
+    | mayorq LISTA_ID_OBJETO menorq div identificador mayorq //< identificador LATRIBUTOS > LISTA_ID_OBJETO < / identificador >
+    | mayorq L_OBJETO menorq div identificador mayorq { $$ = $2; } //< identificador LATRIBUTOS > OBJETOS < / identificador >
     | 
 ;
 
