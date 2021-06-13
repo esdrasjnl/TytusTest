@@ -72,12 +72,12 @@
   }
 */
 var XmlAsc = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,4],$V2=[2,5,7],$V3=[1,8],$V4=[2,5,7,11,12],$V5=[2,12],$V6=[1,12],$V7=[2,5,7,8,11,12],$V8=[7,8],$V9=[2,7];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,4],$V2=[2,5,7],$V3=[1,8],$V4=[2,5,7,11,12],$V5=[1,12],$V6=[2,5,7,8,11,12],$V7=[7,8];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"START":3,"L_OBJETO":4,"EOF":5,"OBJETO":6,"menorq":7,"identificador":8,"LATRIBUTOS":9,"OBJ_ETQ":10,"div":11,"mayorq":12,"LISTA_ID_OBJETO":13,"OBJETOS":14,"ATRIBUTOS":15,"ATRIBUTO":16,"igual":17,"StringLiteral":18,"DECIMAL":19,"ENTERO":20,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",7:"menorq",8:"identificador",11:"div",12:"mayorq",17:"igual",18:"StringLiteral",19:"DECIMAL",20:"ENTERO"},
-productions_: [0,[3,2],[4,2],[4,1],[6,4],[6,1],[10,2],[10,6],[10,7],[10,7],[10,0],[9,1],[9,0],[15,2],[15,1],[16,3],[14,2],[14,1],[13,2],[13,1],[13,1],[13,1]],
+symbols_: {"error":2,"START":3,"L_OBJETO":4,"EOF":5,"OBJETO":6,"menorq":7,"identificador":8,"LATRIBUTOS":9,"OBJ_ETQ":10,"div":11,"mayorq":12,"LISTA_ID_OBJETO":13,"ATRIBUTOS":14,"ATRIBUTO":15,"igual":16,"StringLiteral":17,"DECIMAL":18,"ENTERO":19,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",7:"menorq",8:"identificador",11:"div",12:"mayorq",16:"igual",17:"StringLiteral",18:"DECIMAL",19:"ENTERO"},
+productions_: [0,[3,2],[4,2],[4,1],[6,4],[6,1],[10,2],[10,5],[10,6],[10,6],[10,0],[9,1],[9,0],[14,2],[14,1],[15,3],[13,2],[13,1],[13,1],[13,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -98,6 +98,9 @@ break;
 case 5:
  document.getElementById("console").value += 'Este es un error sintáctico: ' + yytext + ', en la linea: ' + this._$.first_line + ', en la columna: ' + this._$.first_column + '\n'; 
 break;
+case 9:
+ this.$ = $$[$0-4]; 
+break;
 case 11:
  this.$ = $$[$0]; 
 break;
@@ -116,7 +119,7 @@ case 15:
 break;
 }
 },
-table: [{2:$V0,3:1,4:2,6:3,7:$V1},{1:[3]},{2:$V0,5:[1,6],6:7,7:$V1},o($V2,[2,3]),{8:$V3},o($V2,[2,5]),{1:[2,1]},o($V2,[2,2]),o($V4,$V5,{9:9,15:10,16:11,8:$V6}),o($V2,[2,10],{10:13,11:[1,14],12:[1,15]}),o($V4,[2,11],{16:16,8:$V6}),o($V7,[2,14]),{17:[1,17]},o($V2,[2,4]),{12:[1,18]},{2:$V0,6:25,7:[1,19],8:[1,22],13:20,14:21,19:[1,23],20:[1,24]},o($V7,[2,13]),{18:[1,26]},o($V2,[2,6]),{8:$V3,11:[1,27]},{7:[1,28],8:[1,29]},{2:$V0,6:31,7:[1,30]},o($V8,[2,19]),o($V8,[2,20]),o($V8,[2,21]),o($V9,[2,17]),o($V7,[2,15]),{8:[1,32]},{11:[1,33]},o($V8,[2,18]),{8:$V3,11:[1,34]},o($V9,[2,16]),{8:$V6,9:35,12:$V5,15:10,16:11},{8:[1,36]},{8:[1,37]},{12:[1,38]},{8:$V6,9:39,12:$V5,15:10,16:11},{8:$V6,9:40,12:$V5,15:10,16:11},o($V2,$V9),{12:[1,41]},{12:[1,42]},o($V2,[2,8]),o($V2,[2,9])],
+table: [{2:$V0,3:1,4:2,6:3,7:$V1},{1:[3]},{2:$V0,5:[1,6],6:7,7:$V1},o($V2,[2,3]),{8:$V3},o($V2,[2,5]),{1:[2,1]},o($V2,[2,2]),o($V4,[2,12],{9:9,14:10,15:11,8:$V5}),o($V2,[2,10],{10:13,11:[1,14],12:[1,15]}),o($V4,[2,11],{15:16,8:$V5}),o($V6,[2,14]),{16:[1,17]},o($V2,[2,4]),{12:[1,18]},{2:$V0,4:21,6:3,7:[1,19],8:[1,22],13:20,18:[1,23],19:[1,24]},o($V6,[2,13]),{17:[1,25]},o($V2,[2,6]),{8:$V3,11:[1,26]},{7:[1,27],8:[1,28]},{2:$V0,6:7,7:[1,29]},o($V7,[2,17]),o($V7,[2,18]),o($V7,[2,19]),o($V6,[2,15]),{8:[1,30]},{11:[1,31]},o($V7,[2,16]),{8:$V3,11:[1,32]},{12:[1,33]},{8:[1,34]},{8:[1,35]},o($V2,[2,7]),{12:[1,36]},{12:[1,37]},o($V2,[2,8]),o($V2,[2,9])],
 defaultActions: {6:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
@@ -720,7 +723,7 @@ case 9:return 'por';
 break;
 case 10:return 11;
 break;
-case 11:return 17;
+case 11:return 16;
 break;
 case 12:return 'interc';
 break;
@@ -734,13 +737,13 @@ case 16:
 break;
 case 17:
 break;
-case 18:return 19;
+case 18:return 18;
 break;
-case 19:return 20;
+case 19:return 19;
 break;
 case 20:return 8;
 break;
-case 21:return 18;
+case 21:return 17;
 break;
 case 22:    string = ""; this.begin("STRING"); 
 break;
